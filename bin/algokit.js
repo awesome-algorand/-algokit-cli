@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const VERSION = 'v1.11.3'
+const VERSION = 'v1.5.0-beta.2'
 const PYTHON = '3.12'
-const REPO = 'https://github.com/algorandfoundation/algokit-cli'
+const REPO = 'https://github.com/PhearZero/algokit-cli'
 
 import os from 'node:os';
 import {resolve, dirname} from 'node:path'
