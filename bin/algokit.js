@@ -22,6 +22,20 @@ const SYSTEMS = {
     'Linux': 'Linux'
 }
 
+const ARCHS = {
+    x32: 'X32',
+    x64: 'X64',
+    arm: 'ARM',
+    arm64: 'ARM64',
+    s390: 'S390',
+    s390x: 'S390X',
+    mipsel: 'MIPSEL',
+    ia32: 'IA32',
+    mips: 'MIPS',
+    ppc: 'PPC',
+    ppc64: 'PPC64'
+}
+
 let localCmd = resolve(__dirname, `algokit${os.type() === 'Windows_NT' ? '.exe' : ''}`)
 let cmdPath = existsSync(localCmd) ? localCmd : 'algokit'
 
@@ -29,7 +43,9 @@ let cmdPath = existsSync(localCmd) ? localCmd : 'algokit'
 if(!existsSync(localCmd)) {
     console.log('Installing algokit...')
     // Download
-    const {body} = await fetch(`${REPO}/releases/download/${VERSION}/algokit-${VERSION}-${SYSTEMS[os.type()]}-py${PYTHON}.tar.gz`)
+    const release = `${REPO}/releases/download/${VERSION}`
+    const tarName = `algokit-${VERSION}-${SYSTEMS[os.type()]}-${ARCHS[os.arch()]}-py${PYTHON}.tar.gz`
+    const {body} = await fetch(`${release}/${tarName}`)
     const fileStream = createWriteStream(resolve(__dirname, 'algokit.tar.gz'))
     await finished(Readable.from(body).pipe(fileStream))
 
