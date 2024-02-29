@@ -3,6 +3,8 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://awesome-algorand.github.io',
+	base: '/npm-algokit-cli',
 	integrations: [
 		starlight({
 			title: '@algokit/cli',
